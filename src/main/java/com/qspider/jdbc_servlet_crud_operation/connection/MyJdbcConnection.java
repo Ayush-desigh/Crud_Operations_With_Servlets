@@ -14,7 +14,7 @@ public class MyJdbcConnection {
 		Driver driver=new Driver();
 		
 		DriverManager.registerDriver(driver);
-		return DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbc-a16", "root","1234");
+		return DriverManager.getConnection("jdbc:mysql://localhost:3306/data_baseName", "root",passeord);
 	}
 
 }
