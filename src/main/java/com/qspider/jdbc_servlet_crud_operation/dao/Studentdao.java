@@ -158,7 +158,14 @@ import com.qspider.jdbc_servlet_crud_operation.connection.MyJdbcConnection;
 			private final String Delete_student_By_Id="delete from student where id=?";
 			
 			private  final String studentogin_query="select email,password from student where email=? and password=?";
+			private final String Update_Query="update student set name=?,email=?,password=? ,dob=?,phoneNumber=?,address=? where id=?";
+			
 //==================================================================================//
+					
+//					public int updateStudentDao(Student student)
+//					{
+//				
+//					}
 			public int registerStudentDao(Student student) {
 				
 				if(!isExistStudentsById(student.getId()))
@@ -221,7 +228,7 @@ import com.qspider.jdbc_servlet_crud_operation.connection.MyJdbcConnection;
 			}
 			
 			
-			public   Student getStudentsById(int studentId)
+			public   Student getStudentsByIdDao(int studentId)
 			{
 				try(
 						Connection con=MyJdbcConnection.getMyJdbcConnection();
@@ -237,11 +244,11 @@ import com.qspider.jdbc_servlet_crud_operation.connection.MyJdbcConnection;
 						student.setName(re.getString("name"));
 						student.setEmail(re.getString("email"));
 						student.setPassword(re.getString("password"));
-						student.setDob(LocalDate.parse("dob"));
+						student.setDob(re.getDate("dob").toLocalDate());
 						student.setAddress(re.getString("address"));
 						student.setphoneNumber(re.getLong("phoneNumber"));
 						
-						
+						return student;
 						
 					}
 					return null;
@@ -258,7 +265,7 @@ import com.qspider.jdbc_servlet_crud_operation.connection.MyJdbcConnection;
 	//====================================================================================//	
 			public boolean updateStudentById(Student student) {
 
-			    if (isExistStudentsById(student.getId())) {
+			    
 
 			        try (
 			            Connection con = MyJdbcConnection.getMyJdbcConnection();
@@ -280,11 +287,8 @@ import com.qspider.jdbc_servlet_crud_operation.connection.MyJdbcConnection;
 			            return false;
 			        }
 
-			    } else {
-			        System.out.println("Student does not exist with id: " + student.getId());
-			        return false;
-			    }
-			}
+			    } 
+			
 	//======================================================================================//		
 			public List<Student> getAllStudent()
 			{

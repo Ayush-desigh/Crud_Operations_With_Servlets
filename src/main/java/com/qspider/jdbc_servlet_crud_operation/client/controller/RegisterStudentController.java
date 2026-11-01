@@ -45,7 +45,7 @@ public class RegisterStudentController extends HttpServlet {
 		studentdao.registerStudentDao(stu);
 		
 		PrintWriter pr=resp.getWriter();
-		pr.write("Mtlv sikh gyeee");
+		pr.write("Student Registered Successfully...");
 		RequestDispatcher dp=req.getRequestDispatcher("studentLogin.jsp");
 		dp.include(req, resp);
 		
